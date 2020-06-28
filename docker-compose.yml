@@ -1,0 +1,20 @@
+version: "3"
+services:
+        database:
+                image: "mongo:2.6.5"
+                container_name: "mongo"
+                environment:
+                        - MONGO_INITDB_DATABASE=test
+                        - MONGO_INITDB_ROOT_USERNAME=test
+                        - MONGO_INITDB_ROOT_PASSWORD=test
+                volumes:
+                        - ./init-mongo.js:/docker-enterypoint-initdb.d/init-mongo.js:ro
+                        - ./mongo-volume:/data/db
+                        - ./mongodb-keyfile:/opt/keyfile/mongodb-keyfile
+                ports:
+                        - "27017-27019:27017-27019"
+                extra_hosts:
+                        - "manager:172.31.58.28"
+                        - "node1:172.31.49.158"
+                        - "node2:172.31.55.153"
+                #command: ["mongod","--smallfiles","--keyFile"," /opt/keyfile/mongodb-keyfile","--replSet","'rs0'"]
