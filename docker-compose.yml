@@ -1,9 +1,10 @@
 version: '3.1'
 
 services:
-
         mongo:
                 image: mongo
+                hostname: manager
+                container_name: mymongo
                 restart: always
                 environment:
                         MONGO_INITDB_ROOT_USERNAME: root
@@ -12,11 +13,10 @@ services:
                         - ./mongo-volume:/data/db
                         - ./mongo.conf:/etc/mongo.conf
                         - ./mongodb-keyfile:/opt/keyfile/mongodb-keyfile
-
                 ports: 
                         - "27017:27017"
                 extra_hosts:
                         - "manager:172.31.58.28"
                         - "node1:172.31.49.158"
                         - "node2:172.31.55.153"
-                          #entrypoint: ["docker-entrypoint.sh", "--config", "/etc/mongo.conf"]
+                entrypoint: ["docker-entrypoint.sh", "--config", "/etc/mongo.conf"]
