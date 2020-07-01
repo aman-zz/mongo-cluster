@@ -19,4 +19,4 @@ services:
                         - "manager:172.31.58.28"
                         - "node1:172.31.49.158"
                         - "node2:172.31.55.153"
-                entrypoint: ["docker-entrypoint.sh", "--config", "/etc/mongo.conf"]
+                          #entrypoint: ["docker-entrypoint.sh", "--config", "/etc/mongo.conf"]
